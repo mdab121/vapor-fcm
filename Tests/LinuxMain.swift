@@ -1,5 +1,5 @@
 import XCTest
-@testable import FCMTests
+@testable import VaporFCMTests
 
 XCTMain([
      testCase(MessageSerializerTests.allTests),
