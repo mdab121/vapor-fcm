@@ -49,5 +49,4 @@ if response.success {
 } else {
 	// Handle error
 }
-}
 ```
