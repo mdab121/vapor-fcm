@@ -10,7 +10,7 @@
 > Simple Vapor framework for sending Firebase Cloud Messages.
 
 ### :question: Why?
-Do you want to write your awesome server in Swift? At some point, you'll probably need to send Push Notifications to Android as well 😉
+Do you want to write your awesome server in Swift using [Vapor](http://github.com/vapor/vapor)? At some point, you'll probably need to send Push Notifications to Android as well 😉
 
 ### ✅ Features
 - [x] Full message Payload support: badges and sounds for iOS
@@ -40,7 +40,7 @@ let firebase = try Firebase(drop: droplet, keyPath: "/path/to/your/key")
 Create a `Message`, and send it!
 
 ```swift
-let payload = Payload(message: "Hello SwfitFCM!")
+let payload = Payload(text: "Hello VaporFCM!")
 let message = Message(payload: payload)
 let token = DeviceToken("this_is_a_device_token")
 let response = try firebase.send(message: message, to: token)
