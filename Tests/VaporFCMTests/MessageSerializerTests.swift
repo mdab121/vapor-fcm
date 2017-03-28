@@ -9,7 +9,7 @@ class MessageSerializerTests: XCTestCase {
 	var sut: MessageSerializer!
 	let exampleToken = DeviceToken(rawValue: "example_token")
 	let exampleToken2 = DeviceToken(rawValue: "example_token_sdafegrfiefhaslifuharilfugdfisl")
-	let simplePayload = Payload(message: "Hello world")
+	let simplePayload = Payload(text: "Hello world")
 	let bigPayload = Payload(title: "This is a title", body: "this is a body", badge: 14)
 
 	var json: [String: Any]!

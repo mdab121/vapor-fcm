@@ -1,7 +1,6 @@
 // (c) 2017 Kajetan Michal Dabrowski
 // This code is licensed under MIT license (see LICENSE for details)
 
-
 /// MessageData represents extra data that you can
 public struct MessageData: RawRepresentable {
 

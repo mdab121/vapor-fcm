@@ -70,8 +70,8 @@ extension Payload {
 }
 
 extension Payload {
-	public init(message: String) {
-		self.body = message
+	public init(text: String) {
+		self.body = text
 	}
 
 	public init(title: String, body: String) {

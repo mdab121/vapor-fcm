@@ -1,7 +1,6 @@
 // (c) 2017 Kajetan Michal Dabrowski
 // This code is licensed under MIT license (see LICENSE for details)
 
-import Foundation
 import Jay
 
 /// This represents a message that you can send via Firebase

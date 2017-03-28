@@ -11,7 +11,7 @@ class FirebaseTests: XCTestCase {
 
 	let exampleServerKey = ServerKey("this-is-an-invalid-server-key")
 	let exampleToken = DeviceToken("this-is-an-invalid-token")
-	let message = Message(payload: Payload(message: "What's up!"))
+	let message = Message(payload: Payload(text: "What's up!"))
 
 	var sut: Firebase!
 	var drop: Droplet!
@@ -32,18 +32,11 @@ class FirebaseTests: XCTestCase {
 	/// I'm not checking any results (it'll still pass if there is no internet connection). It's mostly useful to see if all the api including curl are present on the system
 
 	func testSimpleSending() throws {
-		let expectation = self.expectation(description: "FirebaseQuery")
-		var capturedResponse: FirebaseResponse?
+		let capturedResponse: FirebaseResponse? = try? sut.send(message: message, to: exampleToken)
 
-		try sut.send(message: message, to: exampleToken) { response in
-			capturedResponse = response
-			expectation.fulfill()
-		}
-		waitForExpectations(timeout: 5) { error in
-			XCTAssertNotNil(capturedResponse)
-			XCTAssertNotNil(capturedResponse?.error)
-			XCTAssertEqual(capturedResponse?.success, false)
-		}
+		XCTAssertNotNil(capturedResponse)
+		XCTAssertNotNil(capturedResponse?.error)
+		XCTAssertEqual(capturedResponse?.success, false)
 	}
 
 	static var allTests : [(String, (FirebaseTests) -> () throws -> Void)] {

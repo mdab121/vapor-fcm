@@ -21,25 +21,22 @@ public struct FirebaseResponse {
 		case error = "error"
 	}
 
-	internal init(error: FirebaseError) {
+	internal init(firebaseError: FirebaseError) {
 		self.success = false
-		self.error = error
+		self.error = firebaseError
 	}
 
-	internal init(data: Data?, statusCode: Int?, error: Error?) {
-		if let error = error {
-			//Error – don't parse the data
-			self.success = false
-			self.error = FirebaseError(error: error)
-			return
-		}
+	internal init(error: Error) {
+		self.init(firebaseError: FirebaseError(error: error))
+	}
+
+	internal init(bytes: [UInt8], statusCode: Int) {
 		guard statusCode == 200 else {
 			self.success = false
 			self.error = FirebaseError(statusCode: statusCode)
 			return
 		}
-		guard let data = data,
-			let json = try? Jay().anyJsonFromData(Array<UInt8>(data)),
+		guard let json = try? Jay().anyJsonFromData(bytes),
 			let dict = json as? [String: Any] else {
 				self.success = false
 				self.error = .invalidData
