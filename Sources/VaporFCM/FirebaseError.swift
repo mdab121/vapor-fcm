@@ -21,6 +21,23 @@ public enum FirebaseError: Error {
 	case other(error: Error)	//Some other error – for example no internet connection
 	case multiple(errors: [FirebaseError])	// Multiple nested errors
 
+	public var localizedDescription: String {
+		let prefix: String = "VaporFCM: "
+		switch self {
+		case .invalidJson: return "\(prefix)VaporFCM reported invalid payload. Please report this"
+		case .invalidServerKey: return "\(prefix)Server Key was invalid"
+		case .serverError: return "\(prefix)Internal Firebase server error"
+		case .invalidRegistration: return "\(prefix)Device Token was invalid"
+		case .missingRegistration: return "\(prefix)Device Token was missiong"
+		case .notRegistered: return "\(prefix)Device Token not registered"
+		case .invalidData: return "\(prefix)Invalid Firebase response: Could not parse data"
+		case .unknown: return "\(prefix)Unknown error"
+		case .networkError(let message): return "\(prefix)Network Error: \(message)"
+		case .other(let error): return "\(prefix)External error: \(error.localizedDescription)"
+		case .multiple(let errors): return "\(prefix)\(errors.map { $0.localizedDescription }.joined(separator: " : "))"
+		}
+	}
+
 	init(message: String) {
 		switch message {
 		case "InvalidRegistration":
