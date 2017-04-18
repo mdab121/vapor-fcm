@@ -1,7 +1,7 @@
 [![Vapor FCM](https://cloud.githubusercontent.com/assets/1230922/24428437/c16ec982-140e-11e7-8ab9-ab764e573ae1.png)](http://github.com/mdab121/vapor-fcm)
 
 [![Build Status](https://travis-ci.org/mdab121/vapor-fcm.svg?branch=master)](https://travis-ci.org/mdab121/vapor-fcm)
-[![Latest Release](https://img.shields.io/github/release/mdab121/vapor-fcm.svg)](https://github.com/mdab121/vapor-fcm/releases/latest)
+[![codebeat badge](https://codebeat.co/badges/2c81440f-8467-453d-9df7-a9352ddc6e5d)](https://codebeat.co/projects/github-com-mdab121-vapor-fcm-master)
 ![Platforms](https://img.shields.io/badge/platforms-Linux%20%7C%20OS%20X-blue.svg)
 ![Package Managers](https://img.shields.io/badge/package%20managers-SwiftPM-yellow.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
