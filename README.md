@@ -17,13 +17,17 @@ Do you want to write your awesome server in Swift using [Vapor](http://github.co
 - [x] Response parsing, instant send response feedback
 - [x] Custom data payload support
 
+### Vapor Versions
+
+- [x] Use Vapor-FCM version `1.x` for Vapor `1.x`
+- [x] Use Vapor-FCM version `2.x` for Vapor `2.x`
 
 ### 💻 Installation
 
 #### Swift Package Manager
 
 ```swift
-.Package(url: "https://github.com/mdab121/vapor-fcm.git", majorVersion: 0, minor: 1)
+.Package(url: "https://github.com/mdab121/vapor-fcm.git", majorVersion: 2, minor: 0)
 ```
 
 
