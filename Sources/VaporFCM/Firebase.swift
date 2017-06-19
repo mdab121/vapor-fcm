@@ -20,7 +20,8 @@ public class Firebase {
 	/// - Parameter keyPath: Path to the Firebase Server Key
 	/// - Throws: Throws an error if file doesn't exist
 	public convenience init(drop: Droplet, keyPath: String) throws {
-		let keyBytes = try DataFile().load(path: keyPath)
+		let keyBytes = try DataFile().read(at: keyPath)
+
 		guard let keyString = String(bytes: keyBytes, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines) else {
 				throw FirebaseError.invalidServerKey
 		}

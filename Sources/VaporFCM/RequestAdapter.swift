@@ -18,6 +18,6 @@ internal class RequestAdapterVapor: RequestAdapting {
 	}
 
 	func send(bytes: Bytes, headers: [HeaderKey : String], url: String) throws -> Response {
-		return try drop.client.post(url, headers: headers, body: Body.data(bytes))
+		return try drop.client.post(url, headers, Body.data(bytes))
 	}
 }
