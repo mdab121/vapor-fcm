@@ -16,6 +16,7 @@ Do you want to write your awesome server in Swift using [Vapor](http://github.co
 - [x] Full message Payload support: badges and sounds for iOS
 - [x] Response parsing, instant send response feedback
 - [x] Custom data payload support
+- [x] Send message to Devices and Topics
 
 ### Vapor Versions
 
@@ -27,7 +28,7 @@ Do you want to write your awesome server in Swift using [Vapor](http://github.co
 #### Swift Package Manager
 
 ```swift
-.Package(url: "https://github.com/mdab121/vapor-fcm.git", majorVersion: 2, minor: 0)
+.Package(url: "https://github.com/mdab121/vapor-fcm.git", majorVersion: 2, minor: 1)
 ```
 
 
@@ -41,13 +42,30 @@ Sending a simple FCM Message is really simple. Just create a `Firebase` object t
 let firebase = try Firebase(drop: droplet, keyPath: "/path/to/your/key")
 ```
 
-Create a `Message`, and send it!
+Create a `Message`
 
 ```swift
 let payload = Payload(text: "Hello VaporFCM!")
 let message = Message(payload: payload)
-let token = DeviceToken("this_is_a_device_token")
+```
+
+And now, simply send your message to a single device!
+
+```swift
+let token: DeviceToken = "this_is_a_device_token"
 let response = try firebase.send(message: message, to: token)
+if response.success {
+	// Handle success
+} else {
+	// Handle error
+}
+```
+
+You can also send messages to [Topics](https://firebase.google.com/docs/cloud-messaging/ios/topic-messaging)
+
+```swift
+let topic: Topic = "cats"
+let response = try firebase.send(message: message, to: topic)
 if response.success {
 	// Handle success
 } else {

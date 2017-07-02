@@ -10,17 +10,16 @@ public class MessageSerializer {
 		case dryRun = "dry_run"
 		case notification = "notification"
 		case data = "data"
-		case token = "to"
 	}
 
-	public func serialize(message: Message, device: DeviceToken) throws -> [UInt8] {
-		let json: [String: Any] = serialize(message: message, device: device)
+	public func serialize(message: Message, target: Targetable) throws -> [UInt8] {
+		let json: [String: Any] = serialize(message: message, target: target)
 		return try Jay(formatting: .minified).dataFromJson(jsonWrapper: JaySON(json))
 	}
 
-	public func serialize(message: Message, device: DeviceToken) -> [String: Any] {
+	public func serialize(message: Message, target: Targetable) -> [String: Any] {
 		var json: [String: Any] = [:]
-		json[MessageKey.token.rawValue] = device.rawValue
+		json[target.targetKey] = target.targetValue
 
 		if message.debug {
 			json[MessageKey.dryRun.rawValue] = message.debug
