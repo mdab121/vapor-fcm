@@ -46,15 +46,30 @@ public struct FirebaseResponse {
 		var messageIds: [String] = []
 		var errors: [FirebaseError] = []
 
-		let results = dict[ResponseKey.result.rawValue] as? [[String: Any]]
-		for result in results ?? [] {
-			if let id = result[ResponseKey.messageId.rawValue] as? String {
-				messageIds.append(id)
-			}
-			if let errorMessage = result[ResponseKey.error.rawValue] as? String {
-				errors.append(FirebaseError(message: errorMessage))
-			}
-		}
+		/*
+         Differentiate between multicast and topic requests/responses:
+         - multicast: result (array) wrapped in `result` key
+         - topic: result in root object
+         see: https://firebase.google.com/docs/cloud-messaging/send-message
+         */
+        var results = [[String: Any]]()
+        if let multicastResults = dict[ResponseKey.result.rawValue] as? [[String: Any]] {
+
+            results = multicastResults
+
+        } else {
+
+            results.append(dict)
+        }
+
+        for result in results {
+            if let id = result[ResponseKey.messageId.rawValue] {
+                messageIds.append(id)
+            }
+            if let errorMessage = result[ResponseKey.error.rawValue] as? String {
+                errors.append(FirebaseError(message: errorMessage))
+            }
+        }
 
 		self.success = errors.isEmpty && !messageIds.isEmpty
 		self.error = FirebaseError(multiple: errors)
