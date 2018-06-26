@@ -43,7 +43,7 @@ public struct FirebaseResponse {
 				return
 		}
 
-		var messageIds: [String] = []
+		var messageIds: [Any] = []
 		var errors: [FirebaseError] = []
 
 		/*
