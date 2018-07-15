@@ -12,12 +12,12 @@ public class MessageSerializer {
 		case data = "data"
 	}
 
-	public func serialize(message: Message, target: Targetable) throws -> [UInt8] {
+	public func serialize<Target: Targetable>(message: Message, target: Target) throws -> [UInt8] {
 		let json: [String: Any] = serialize(message: message, target: target)
 		return try Jay(formatting: .minified).dataFromJson(jsonWrapper: JaySON(json))
 	}
 
-	public func serialize(message: Message, target: Targetable) -> [String: Any] {
+	public func serialize<Target: Targetable>(message: Message, target: Target) -> [String: Any] {
 		var json: [String: Any] = [:]
 		json[target.targetKey] = target.targetValue
 

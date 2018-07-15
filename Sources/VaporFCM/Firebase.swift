@@ -47,13 +47,13 @@ public class Firebase {
 	///   - target: Firebase Device Token or Topic that you want to send your message to
 	/// - Returns: Synchronous response
 	/// - Throws: Serialization error when the message could not be serialized
-	public func send(message: Message, to target: Targetable) throws -> FirebaseResponse {
+	public func send<Target: Targetable>(message: Message, to target: Target) throws -> Target.ResponseType {
 		let requestBytes: Bytes = try serializer.serialize(message: message, target: target)
 		do {
 			let response = try requestAdapter.send(bytes: requestBytes, headers: generateHeaders(), url: pushUrl)
-			return FirebaseResponse(bytes: response.body.bytes ?? [], statusCode: response.status.statusCode)
+			return Target.ResponseType(bytes: response.body.bytes ?? [], statusCode: response.status.statusCode)
 		} catch {
-			return FirebaseResponse(error: error)
+			return Target.ResponseType(error: error)
 		}
 	}
 

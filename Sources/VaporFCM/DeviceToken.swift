@@ -23,6 +23,8 @@ extension DeviceToken: Targetable {
 	public var targetValue: String {
 		return rawValue
 	}
+
+	public typealias ResponseType = FirebaseDeviceResponse
 }
 
 extension DeviceToken: Equatable {

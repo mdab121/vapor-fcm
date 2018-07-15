@@ -8,4 +8,7 @@ import Foundation
 public protocol Targetable {
 	var targetKey: String { get }
 	var targetValue: String { get }
+
+	/// The response type for this type of target
+	associatedtype ResponseType: FirebaseResponse
 }
