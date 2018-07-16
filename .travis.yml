@@ -7,7 +7,9 @@ sudo: required
 dist: trusty
 before_install:
   - if [ $TRAVIS_OS_NAME == "osx" ]; then
+      brew tap vapor/tap;
       brew tap vapor/homebrew-tap;
+      brew update;
       brew install ctls;
     fi
 install:
