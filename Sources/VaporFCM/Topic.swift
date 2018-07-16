@@ -36,6 +36,8 @@ extension Topic: Targetable {
 			return "condition"
 		}
 	}
+
+	public typealias ResponseType = FirebaseTopicResponse
 }
 
 extension Topic: Equatable {
